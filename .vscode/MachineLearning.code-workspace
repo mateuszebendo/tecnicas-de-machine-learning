@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "path": "../",
+    },
+  ],
+  "extensions": {
+    "recommendations": [
+      // life candys:
+      "aaron-bond.better-comments",
+      "alefragnani.Bookmarks",
+      "christian-kohler.path-intellisense",
+      "dzhavat.bracket-pair-toggler",
+      "PKief.material-icon-theme",
+      "usernamehw.errorlens",
+      "eliostruyf.vscode-hide-comments",
+
+      // Workspace Essentials:
+      "kevinrose.vsc-python-indent",
+      "ms-python.python",
+      "jojoee.conda-cheatsheet",
+      "njpwerner.autodocstring",
+      "ms-toolsai.jupyter",
+      "ms-toolsai.datawrangler",
+      "ms-vsliveshare.vsliveshare",
+    ],
+  }
+}

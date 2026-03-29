@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Python: Flask (Auto-Run)",
+          "type": "debugpy",
+          "request": "launch",
+          "program": "${file}",
+          "env": {
+              "FLASK_APP": "${file}",
+              "FLASK_DEBUG": "1"
+          },
+          "console": "integratedTerminal"
+      }
+  ]
+}
