@@ -24,5 +24,10 @@
       "ms-toolsai.datawrangler",
       "ms-vsliveshare.vsliveshare",
     ],
+  },
+  "settings": {
+    "workbench.editorAssociations": {
+      "file:/**/*.csv": "jupyter-data-wrangler"
+    }
   }
 }
