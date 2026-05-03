@@ -1,11 +1,5 @@
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import (
-    GaussianNB, 
-    BernoulliNB, 
-    MultinomialNB, 
-    ComplementNB, 
-    CategoricalNB
-)
+from sklearn.naive_bayes import GaussianNB, BernoulliNB
 from sklearn.metrics import accuracy_score, confusion_matrix
 from pre_processamento import preparar_dados
 from visualizacao import plotar_matriz_confusao, plotar_curva_roc, plotar_curva_pr, relatorio_metricas
@@ -18,18 +12,13 @@ def executar_naive_bayes(tipo='gaussian'):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
     
     # 3. Instanciação e Treinamento do Modelo
+    # Como não usamos StandardScaler, os dados vão direto para o modelo
     if tipo == 'gaussian':
         modelo = GaussianNB()
     elif tipo == 'bernoulli':
+        # BernoulliNB é focado em dados binários (0 e 1), que é exatamente o que 
+        # temos após o One-Hot Encoding.
         modelo = BernoulliNB()
-    elif tipo == 'multinomial':
-        modelo = MultinomialNB()
-    elif tipo == 'complement':
-        modelo = ComplementNB()
-    elif tipo == 'categorical':
-        modelo = CategoricalNB()
-    else:
-        raise ValueError(f"Tipo de modelo desconhecido: '{tipo}'")
         
     modelo.fit(X_train, y_train)
     
@@ -54,7 +43,8 @@ def executar_naive_bayes(tipo='gaussian'):
     plotar_curva_pr(y_test, y_proba, nome_modelo)
 
 if __name__ == "__main__":
-    tipos_nb = ['gaussian', 'bernoulli', 'multinomial', 'complement', 'categorical']
+    # Testando as duas distribuições para o Arquivo de Investigação
+    tipos_nb = ['gaussian', 'bernoulli']
     
     for t in tipos_nb:
         executar_naive_bayes(tipo=t)

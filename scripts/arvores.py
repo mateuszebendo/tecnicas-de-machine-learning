@@ -45,48 +45,13 @@ def executar_arvore(config, tipo='decision_tree'):
     plotar_importancia_variaveis(modelo.feature_importances_, X.columns, nome_modelo)
 
 if __name__ == "__main__":
-    # Configurações para exploração de hiperparâmetros
+    # Configurações extraídas do seu Arquivo de Investigação
     configs = [
-        # ==========================================
-        # 5 CONFIGURAÇÕES PARA DECISION TREE
-        # ==========================================
-        
-        # 1. Árvore rasa (boa para evitar overfitting)
-        {'tipo': 'decision_tree', 'params': {'criterion': 'gini', 'max_depth': 4, 'random_state': 0}},
-        
-        # 2. Árvore baseada em Entropia com profundidade moderada
         {'tipo': 'decision_tree', 'params': {'criterion': 'entropy', 'max_depth': 8, 'random_state': 0}},
-        
-        # 3. Árvore profunda, mas exigindo mínimo de amostras nas folhas (traz estabilidade)
-        {'tipo': 'decision_tree', 'params': {'criterion': 'gini', 'max_depth': 15, 'min_samples_leaf': 5, 'random_state': 0}},
-        
-        # 4. Árvore sem limite de profundidade (vai crescer até classificar tudo ou atingir o limite lógico)
-        {'tipo': 'decision_tree', 'params': {'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 10, 'random_state': 0}},
-        
-        # 5. Usando log_loss (similar à entropia) com poda leve
-        {'tipo': 'decision_tree', 'params': {'criterion': 'log_loss', 'max_depth': 6, 'min_samples_leaf': 2, 'random_state': 0}},
-
-        # ==========================================
-        # 5 CONFIGURAÇÕES PARA RANDOM FOREST
-        # ==========================================
-        
-        # 1. Floresta pequena e rápida (poucas árvores, profundidade limitada)
-        {'tipo': 'random_forest', 'params': {'n_estimators': 10, 'criterion': 'gini', 'max_depth': 5, 'random_state': 0}},
-        
-        # 2. Floresta padrão robusta (100 árvores é o padrão moderno do scikit-learn)
-        {'tipo': 'random_forest', 'params': {'n_estimators': 100, 'criterion': 'gini', 'max_depth': 10, 'random_state': 0}},
-        
-        # 3. Focada em Entropia com limite restrito de features por divisão (sqrt)
-        {'tipo': 'random_forest', 'params': {'n_estimators': 50, 'criterion': 'entropy', 'max_depth': 15, 'max_features': 'sqrt', 'random_state': 0}},
-        
-        # 4. Floresta grande (200 árvores) para máxima estabilidade das previsões
-        {'tipo': 'random_forest', 'params': {'n_estimators': 200, 'criterion': 'entropy', 'max_depth': None, 'min_samples_leaf': 2, 'random_state': 0}},
-        
-        # 5. Floresta sem Bootstrap (pasting). Usa o dataset inteiro em todas as árvores em vez de amostras
-        {'tipo': 'random_forest', 'params': {'n_estimators': 50, 'criterion': 'gini', 'bootstrap': False, 'max_depth': 12, 'random_state': 0}}
+        {'tipo': 'decision_tree', 'params': {'criterion': 'entropy', 'max_depth': 6, 'random_state': 0}},
+        {'tipo': 'random_forest', 'params': {'criterion': 'gini', 'max_depth': 15, 'n_estimators': 9, 'max_features': 7, 'random_state': 0}}
     ]
     
     for cfg in configs:
-        print(f"Executando {cfg['tipo'].upper()} com os parâmetros: {cfg['params']}")
         executar_arvore(cfg['params'], tipo=cfg['tipo'])
         print("\n" + "="*50 + "\n")

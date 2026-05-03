@@ -43,7 +43,7 @@ def executar_knn(k=5):
     plotar_curva_pr(y_test, y_proba, nome_modelo)
 
 if __name__ == "__main__":
-    valores_k = [23]
+    valores_k = [5, 29, 30]
     
     for k in valores_k:
         executar_knn(k=k)
